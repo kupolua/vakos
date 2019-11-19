@@ -31,6 +31,17 @@
             } );
         });
 
+        $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-COUNTERSSTATE.json", function( data ) {
+            $(document).ready(function() {
+                console.log(data);
+                $('#COUNTERSSTATE').DataTable( {
+                    data: data.dataSet,
+                    columns: data.columns,
+                    "scrollX": true
+                } );
+            } );
+        });
+
 
     </script>
 
@@ -42,6 +53,7 @@
 <div style="width: 100%; margin: 0 auto">
     <table id="RECEIPTCURR" class="display nowrap" style="width:100%;"></table>
     <table id="SALEOTDELSGOODS" class="display nowrap" style="width:100%;"></table>
+    <table id="COUNTERSSTATE" class="display nowrap" style="width:100%;"></table>
 </div>
 
 
