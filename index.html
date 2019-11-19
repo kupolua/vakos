@@ -20,10 +20,10 @@
             } );
         });
 
-        $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-JOURNALSTRING.json", function( data ) {
+        $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-SALEOTDELSGOODS.json", function( data ) {
             $(document).ready(function() {
                 console.log(data);
-                $('#JOURNALSTRING').DataTable( {
+                $('#SALEOTDELSGOODS').DataTable( {
                     data: data.dataSet,
                     columns: data.columns,
                     "scrollX": true
@@ -41,7 +41,7 @@
 <body>
 <div style="width: 100%; margin: 0 auto">
     <table id="RECEIPTCURR" class="display nowrap" style="width:100%;"></table>
-    <table id="JOURNALSTRING" class="display nowrap" style="width:100%;"></table>
+    <table id="SALEOTDELSGOODS" class="display nowrap" style="width:100%;"></table>
 </div>
 
 
