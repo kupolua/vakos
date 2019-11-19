@@ -20,16 +20,16 @@
             } );
         });
 
-        // $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-RECEIPTCURRDETAIL.json", function( data ) {
-        //     $(document).ready(function() {
-        //         console.log(data);
-        //         $('#RECEIPTCURRDETAIL').DataTable( {
-        //             data: data.dataSet,
-        //             columns: data.columns,
-        //             "scrollX": true
-        //         } );
-        //     } );
-        // });
+        $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-JOURNALSTRING.json", function( data ) {
+            $(document).ready(function() {
+                console.log(data);
+                $('#JOURNALSTRING').DataTable( {
+                    data: data.dataSet,
+                    columns: data.columns,
+                    "scrollX": true
+                } );
+            } );
+        });
 
 
     </script>
@@ -41,7 +41,7 @@
 <body>
 <div style="width: 100%; margin: 0 auto">
     <table id="RECEIPTCURR" class="display nowrap" style="width:100%;"></table>
-    <table id="RECEIPTCURRDETAIL" class="display nowrap" style="width:100%;"></table>
+    <table id="JOURNALSTRING" class="display nowrap" style="width:100%;"></table>
 </div>
 
 
