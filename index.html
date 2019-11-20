@@ -11,6 +11,7 @@
     <script>
         $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-RECEIPTCURR.json", function( data ) {
             $(document).ready(function() {
+
                 console.log(data);
                 $('#RECEIPTCURR').DataTable( {
                     data: data.dataSet,
