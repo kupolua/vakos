@@ -4,15 +4,42 @@
     <title>Brisk Table</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" media="screen" />
+
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-
     <script>
+        // $.getJSON( "DataTable-RECEIPTCURR.json", function( data ) {
         $.getJSON( "https://raw.githubusercontent.com/kupolua/vakos/master/DataTable-RECEIPTCURR.json", function( data ) {
             $(document).ready(function() {
+                let receipts_tape = {};
+                let totalCost = 0;
+                let paymentMethod = {};
 
-                console.log(data);
+                data.dataSet.forEach(row => {
+                    totalCost += +row[14];
+
+                    if(receipts_tape.hasOwnProperty(row[15])) {
+                        if(receipts_tape[row[15]].hasOwnProperty(row[6])) {
+                            if(receipts_tape[row[15]][row[6]].hasOwnProperty('liters') && receipts_tape[row[15]][row[6]].hasOwnProperty('costs')) {
+                                let liters = receipts_tape[row[15]][row[6]].liters;
+                                let costs = receipts_tape[row[15]][row[6]].costs;
+
+                                receipts_tape[row[15]][row[6]].liters = liters + +row[18];
+                                receipts_tape[row[15]][row[6]].costs = costs + +row[14];
+                            }
+                        } else {
+                            receipts_tape[row[15]] = {...receipts_tape[row[15]], [row[6]]: {liters: Number(row[18]), costs: Number(row[14])}};
+                        }
+                    } else {
+                        receipts_tape[row[15]] = {[row[6]]: {liters: Number(row[18]), costs: Number(row[14])}};
+                    }
+
+                });
+
+                console.log(receipts_tape);
+                console.log(parseInt(totalCost * 100) / 100);
+
                 $('#RECEIPTCURR').DataTable( {
                     data: data.dataSet,
                     columns: data.columns,
@@ -51,6 +78,7 @@
 </head>
 
 <body>
+<div id="RECEIPTS_TAPE" style="margin-bottom: 80px;"></div>
 <div style="width: 100%; margin: 0 auto">
     <table id="RECEIPTCURR" class="display nowrap" style="width:100%;"></table>
     <table id="SALEOTDELSGOODS" class="display nowrap" style="width:100%;"></table>
